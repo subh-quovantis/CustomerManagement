@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CustomerManagement.Models.CustomerDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <style>
+        body {
+            background-color: floralwhite;
+        }
+
+        .IndexMain{
+            width: 200px;
+            height:150px;
+            border:0.2px;
+            border-style:solid;
+            border-color: #988F8F;
+            border-radius:5px;
+            margin:20px 20px 20px;
+            
+        }
+        .IndexHead{
+            background: #3614A4;
+            color:white;
+        }
+        .IndexPage{
+            width:700px;
+            height:700px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+       
+        }
+    </style>
+</head>
+<h1>Customers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="IndexPage">
+    @foreach (var item in Model)
+{
+    <div class="IndexMain">
+         <div class="IndexHead">
+              @Html.DisplayFor(modelItem => item.Name)
+         </div>
+         <div>
+              @Html.DisplayFor(modelItem => item.City)
+                <a asp-controller="orders" asp-action="CustomerDetails" asp-route-id="@item.CustomerID">View Orders</a>
+         </div>
+     </div>
+}
+</div>
+
+
+
